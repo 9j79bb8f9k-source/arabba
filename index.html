@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <title>ArabaPusula</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      h1 {
+        color: #185FA5;
+      }
+
+      div {
+        background: white;
+        padding: 16px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>ArabaPusula</h1>
+    <p>Türkiye'nin araba yorum platformu</p>
+
+    <input type="text" placeholder="Marka veya model ara..." style="
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    ">
+
+    <h2>Popüler Araçlar</h2>
+
+    <div>
+      <h3><a href="corolla.html" style="color:#333; text-decoration:none;">Toyota Corolla</a></h3>
+      <p style="color: #EF9F27;">★★★★☆</p>
+      <p style="color: #888; font-size: 14px;">4.1 / 5 puan · 1.240 yorum</p>
+    </div>
+
+    <div>
+      <h3><a href="clio.html" style="color:#333; text-decoration:none;">Renault Clio</a></h3>
+      <p style="color: #EF9F27;">★★★★★</p>
+      <p style="color: #888; font-size: 14px;">4.3 / 5 puan · 2.015 yorum</p>
+    </div>
+
+    <div>
+      <h3><a href="passat.html" style="color:#333; text-decoration:none;">Volkswagen Passat</a></h3>
+      <p style="color: #EF9F27;">★★★★☆</p>
+      <p style="color: #888; font-size: 14px;">3.8 / 5 puan · 876 yorum</p>
+    </div>
+
+    <script>
+      const arama = document.querySelector('input');
+      const kutucuklar = document.querySelectorAll('div');
+
+      arama.addEventListener('input', function() {
+        const yazi = arama.value.toLowerCase();
+
+        kutucuklar.forEach(function(kutu) {
+          const isim = kutu.innerText.toLowerCase();
+          if (isim.includes(yazi)) {
+            kutu.style.display = 'block';
+          } else {
+            kutu.style.display = 'none';
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>
