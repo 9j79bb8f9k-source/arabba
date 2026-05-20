@@ -15,6 +15,7 @@
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       }
       .geri {
         color: #185FA5;
@@ -45,6 +46,80 @@
       <h3>Konfor</h3>
       <p style="color: #888;">4.2 / 5</p>
     </div>
+
+    <h2>Yorum Yaz</h2>
+
+    <div class="kart">
+      <input type="text" id="isim" placeholder="Adın" style="
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      ">
+
+      <textarea id="yorum" placeholder="Deneyimini yaz..." style="
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        height: 100px;
+      "></textarea>
+
+      <button onclick="yorumGonder()" style="
+        background: #185FA5;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+      ">Yorum Gönder</button>
+    </div>
+
+    <h2>Yorumlar</h2>
+    <div id="yorumlar"></div>
+
+    <script>
+      function yorumlariGoster() {
+        const yorumlar = JSON.parse(localStorage.getItem('passat') || '[]');
+        const alan = document.getElementById('yorumlar');
+        alan.innerHTML = '';
+
+        yorumlar.forEach(function(y) {
+          const div = document.createElement('div');
+          div.className = 'kart';
+          div.innerHTML = '<strong>' + y.isim + '</strong><p>' + y.yorum + '</p>';
+          alan.appendChild(div);
+        });
+      }
+
+      function yorumGonder() {
+        const isim = document.getElementById('isim').value;
+        const yorum = document.getElementById('yorum').value;
+
+        if (isim === '' || yorum === '') {
+          alert('Lütfen adını ve yorumunu yaz!');
+          return;
+        }
+
+        const yorumlar = JSON.parse(localStorage.getItem('passat') || '[]');
+        yorumlar.push({ isim: isim, yorum: yorum });
+        localStorage.setItem('passat', JSON.stringify(yorumlar));
+
+        document.getElementById('isim').value = '';
+        document.getElementById('yorum').value = '';
+
+        yorumlariGoster();
+      }
+
+      yorumlariGoster();
+    </script>
 
   </body>
 </html>
